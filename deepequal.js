@@ -15,29 +15,30 @@ let b = {
 };
 
 
-console.log(a === b);
+//console.log(a === b);
 
 
 function deepEqual(a, b) {
-    
-    for(let key1 in a){
-        
-        for(let key2 in b){
-            if(key1 === key2){
-                if(typeof a[key1] == "object" && typeof b[key2] == "object"){
-                    let c = a[key1];
-                    let d = b[key2];
-                    deepEqual(c, d);
-                } else if(a[key1] === b[key2]) {
-                    continue;
-                } else if((a[key1] === b[key2])){
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
+  let string = '';
+  function objToStr(obj){
+    for(let key in obj){
+      if(typeof a[key] === 'object'){
+        string += '1' + key;
+        objToStr(obj[key]);
+      } else {
+        string += key + obj[key];
+      }
     }
+    return string;
+  }
+  
+  let str1 = objToStr(a);
+  //Костыль!:)
+  string = '';
+  let str2 = objToStr(b);
+  
+  if(str1 === str2){
+    return true
+  }
+  return false;
 }
-
-deepEqual(a, b);
