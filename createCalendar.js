@@ -2,7 +2,7 @@ function createCalendar(id, year, month){
     'use strict';
     
     month = month - 1;
-    let date = new Date(year, month);
+    
     let firstDay = new Date(year, month, 1);
     let lastDay = new Date(year, month + 1, 0);
     let container = document.createElement('div');
@@ -11,8 +11,6 @@ function createCalendar(id, year, month){
 
     firstDay = firstDay.getDay();
     lastDay = lastDay.getDate();
-    console.log(date);
-    console.log(firstDay);
     firstDay === 0 ? firstDay = 7 : firstDay = firstDay;
     let daysWeek = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
     let table = document.createElement('table');
@@ -27,7 +25,7 @@ function createCalendar(id, year, month){
     let cols = daysWeek.length;
     let rows = 6;
     let tbody = document.createElement('tbody');
-    //debugger;
+    
     for(let i = 0; i < rows; i++){
         
         let tr = document.createElement('tr');
@@ -47,7 +45,6 @@ function createCalendar(id, year, month){
     document.body.appendChild(container);
 
     let cells = document.querySelectorAll('td');
-    console.log(cells);
     let startMonth = 1;
     for(firstDay = firstDay - 1; firstDay < cells.length; firstDay++){
         cells[firstDay].innerHTML = startMonth;
