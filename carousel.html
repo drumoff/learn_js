@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<title>test</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<!--<script src="js/libs.min.js" defer></script>-->		
+		<script src="js/common.js" defer></script>
+		<script src="js/deepequal.js" defer></script>
+		<script src='js/st.js'></script>
+
+	</head>
+<body>
+	<div id="container">
+  </div>
+  <!-- ваша верстка виджета, ваши стили -->
+  <style>
+    body{
+      padding-top: 30px
+    }
+    .carousel{
+      position: relative;
+      margin: 0 auto;
+      box-shadow: inset 0px 0px 10px 1px black;
+      border-radius: 5px;
+      background-color: rgba(0,0,0, .2);
+      width: auto;
+      padding: 0 40px;
+      max-width: 400px;
+    }
+
+    .wrapper-carousel{
+      position: relative;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    
+    .carousel li{
+      float: left;
+      list-style: none;
+      height: 130px;
+      z-index: 10
+    }
+    
+    .carousel span{
+      opacity: 0;
+    }
+    
+    .carousel ul{
+      margin: 0 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+    
+    .arrow{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .right{
+      right: 10px;
+    }
+    .left{
+      left: 10px;
+    }
+    
+  </style>
+  
+
+  <div class="carousel">
+        <button class="arrow">⇦</button>
+        <button class="arrow">⇨</button>
+      <div class="wrapper-carousel">
+          
+        <ul>
+          <li><img src="https://js.cx/carousel/1.png"></li>
+          <li><img src="https://js.cx/carousel/2.png"></li>
+          <li><img src="https://js.cx/carousel/3.png"></li>
+          <li><img src="https://js.cx/carousel/4.png"></li>
+          <li><img src="https://js.cx/carousel/5.png"></li>
+          <li><img src="https://js.cx/carousel/6.png"></li>
+          <li><img src="https://js.cx/carousel/7.png"></li>
+          <li><img src="https://js.cx/carousel/8.png"></li>
+          <li><img src="https://js.cx/carousel/9.png"></li>
+          <li><img src="https://js.cx/carousel/10.png"></li>
+        </ul>
+      </div>
+      
+  </div>
+  
+
+  <script>
+  window.onload = function(){
+    // этот код помечает картинки цифрами, для удобства разработки
+   // его можно убрать, если не нужен
+  var lis = document.getElementsByTagName('li');
+  for (var i = 0; i < lis.length; i++) {
+    lis[i].style.position = 'relative';
+    var span = document.createElement('span');
+    span.style.cssText = 'position:absolute;left:0;top:0';
+    span.innerHTML = i + 1;
+    lis[i].appendChild(span);
+  }
+
+  let carousel = document.querySelector('.wrapper-carousel');
+  let carouselList = document.querySelector('.wrapper-carousel ul');
+  let carouseImgs   = carouselList.querySelectorAll('li img');
+  let wtImg = carouseImgs[0].clientWidth;
+  let htImg = carouseImgs[0].clientHeight;
+  let buttons = document.querySelectorAll('.arrow');
+
+  let buttonLeft  = buttons[0]; 
+  let buttonRight = buttons[1];
+  buttonLeft.classList.add('left');
+  buttonRight.classList.add('right');
+  
+  carousel.style.width = wtImg * 3 + 'px';
+  carousel.style.height = htImg + 'px';
+  
+  carouselList.clientWidth;
+  
+}
+ </script>
+
+ </body>
+	
+</html>
