@@ -7,9 +7,6 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<!--<script src="js/libs.min.js" defer></script>-->		
 		<script src="js/common.js" defer></script>
-		<script src="js/deepequal.js" defer></script>
-		<script src='js/st.js'></script>
-
 	</head>
 <body>
 	<div id="container">
@@ -26,10 +23,9 @@
       border-radius: 5px;
       background-color: rgba(0,0,0, .2);
       width: auto;
-      padding: 0 40px;
-      max-width: 400px;
+      padding: 0 0;
+      max-width: 500px;
     }
-
     .wrapper-carousel{
       position: relative;
       overflow: hidden;
@@ -65,7 +61,6 @@
       cursor: pointer;
       z-index: 100;
     }
-
     .right{
       right: 10px;
     }
@@ -99,35 +94,60 @@
   
 
   <script>
-  window.onload = function(){
-    // этот код помечает картинки цифрами, для удобства разработки
-   // его можно убрать, если не нужен
-  var lis = document.getElementsByTagName('li');
-  for (var i = 0; i < lis.length; i++) {
-    lis[i].style.position = 'relative';
-    var span = document.createElement('span');
-    span.style.cssText = 'position:absolute;left:0;top:0';
-    span.innerHTML = i + 1;
-    lis[i].appendChild(span);
+window.onload = function(){
+
+let carousel = document.querySelector('.wrapper-carousel');
+let carouselList = document.querySelector('.wrapper-carousel ul');
+let carouselImgs   = carouselList.querySelectorAll('li img');
+let wtImg = carouselImgs[0].clientWidth;
+let htImg = carouselImgs[0].clientHeight;
+let buttons = document.querySelectorAll('.arrow');
+let buttonLeft  = buttons[0]; 
+let buttonRight = buttons[1];
+buttonLeft.classList.add('left');
+buttonRight.classList.add('right');
+let typeWt = carouselImgs.length * wtImg;
+
+//количество перелистываемых картинок
+let n = 3;
+let oneStep = wtImg * n;
+
+carousel.style.width = wtImg * 3 + 'px';
+carousel.style.height = htImg + 'px';
+let leftPos  = carouselList.style.left;
+
+buttonRight.addEventListener('click', (e)=>{
+  leftPos = +leftPos;
+  leftPos -= oneStep;
+  
+  if(leftPos < -(typeWt - wtImg * 3)){
+      leftPos = -(typeWt - wtImg * 3);
   }
 
-  let carousel = document.querySelector('.wrapper-carousel');
-  let carouselList = document.querySelector('.wrapper-carousel ul');
-  let carouseImgs   = carouselList.querySelectorAll('li img');
-  let wtImg = carouseImgs[0].clientWidth;
-  let htImg = carouseImgs[0].clientHeight;
-  let buttons = document.querySelectorAll('.arrow');
+  carouselList.style.left = leftPos + 'px';
+  
+});
 
-  let buttonLeft  = buttons[0]; 
-  let buttonRight = buttons[1];
-  buttonLeft.classList.add('left');
-  buttonRight.classList.add('right');
+buttonLeft.addEventListener('click', (e)=>{
+  leftPos = +leftPos;
+  leftPos += oneStep;
   
-  carousel.style.width = wtImg * 3 + 'px';
-  carousel.style.height = htImg + 'px';
+  if(leftPos > 0){
+      leftPos = 0;
+  }
+  let k = 0;
+  setInterval(()=>{
+    
+    
+   
+    console.log(k);
+  }, 5);
+
+  carouselList.style.left = leftPos + 'px';
   
-  carouselList.clientWidth;
-  
+})
+
+
 }
  </script>
 
